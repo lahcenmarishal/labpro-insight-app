@@ -51,8 +51,8 @@ export function PublicShell({ children }: { children: ReactNode }) {
       </main>
 
       {/* Footer — desktop / tablet only */}
-      <footer className="hidden md:block border-t bg-surface mt-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 grid gap-8 md:grid-cols-4">
+      <footer className="hidden lg:block border-t bg-surface mt-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 grid gap-8 lg:grid-cols-4">
           <div>
             <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-14 w-auto object-contain mb-3" />
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -99,7 +99,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
 
       {/* Bottom tab bar — mobile only (vraie sensation d'app native) */}
       <nav
-        className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-surface/95 backdrop-blur border-t shadow-[0_-4px_20px_-8px_rgba(0,0,0,0.1)]"
+        className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-surface/95 backdrop-blur border-t shadow-[0_-4px_20px_-8px_rgba(0,0,0,0.1)]"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <div className="grid grid-cols-4">
