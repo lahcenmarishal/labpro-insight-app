@@ -20,7 +20,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen bg-background">
-      <aside className="hidden md:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
+      <aside className="hidden lg:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
         <div className="flex items-center justify-center px-4 py-5 border-b border-sidebar-border bg-white">
           <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-14 w-auto object-contain" />
         </div>
@@ -54,11 +54,11 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <div className="flex-1 flex flex-col min-w-0">
         <header className="sticky top-0 z-20 flex items-center gap-4 bg-surface/90 backdrop-blur border-b px-4 md:px-8 py-3">
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-8 w-auto object-contain" />
           </div>
 
-          <div className="hidden md:flex flex-1 max-w-xl relative">
+          <div className="hidden lg:flex flex-1 max-w-xl relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
             <input
               type="search"
@@ -81,7 +81,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         <main className="flex-1 px-4 md:px-8 py-6 md:py-8">{children}</main>
 
-        <nav className="md:hidden sticky bottom-0 z-20 bg-sidebar text-sidebar-foreground border-t border-sidebar-border grid grid-cols-5">
+        <nav className="lg:hidden sticky bottom-0 z-20 bg-sidebar text-sidebar-foreground border-t border-sidebar-border grid grid-cols-5">
           {nav.map((item) => {
             const active = item.to === "/app" ? pathname === "/app" || pathname === "/app/" : pathname.startsWith(item.to);
             const Icon = item.icon;
