@@ -1,7 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/start-server-core";
+import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Category, Product, Sector } from "@/data/catalog";
+import type { Database } from "@/integrations/supabase/types";
 
 export interface AdminProduct extends Product {
   stock: number;
@@ -73,6 +75,23 @@ function mapSupplier(row: Record<string, unknown>): Supplier {
 
 const STORAGE_PREFIX = "storage:";
 
+function createSupabasePublicClient() {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error("Configuration backend manquante: SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY");
+  }
+
+  return createClient<Database>(supabaseUrl, supabaseKey, {
+    auth: {
+      storage: undefined,
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
+}
+
 async function resolveAssetUrl(
   supabase: { storage: { from: (b: string) => { createSignedUrl: (p: string, exp: number) => Promise<{ data: { signedUrl: string } | null; error: unknown }> } } },
   value: string,
@@ -85,11 +104,11 @@ async function resolveAssetUrl(
 }
 
 export const fetchCatalog = createServerFn({ method: "GET" }).handler(async () => {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const supabasePublic = createSupabasePublicClient();
   const [cats, prods, sups] = await Promise.all([
-    supabaseAdmin.from("categories").select("*").order("sort_order", { ascending: true }),
-    supabaseAdmin.from("products").select("*").order("created_at", { ascending: true }),
-    supabaseAdmin.from("suppliers").select("*").order("name", { ascending: true }),
+    supabasePublic.from("categories").select("*").order("sort_order", { ascending: true }),
+    supabasePublic.from("products").select("*").order("created_at", { ascending: true }),
+    supabasePublic.from("suppliers").select("*").order("name", { ascending: true }),
   ]);
   if (cats.error) throw new Error(cats.error.message);
   if (prods.error) throw new Error(prods.error.message);
@@ -98,9 +117,9 @@ export const fetchCatalog = createServerFn({ method: "GET" }).handler(async () =
     (prods.data ?? []).map(async (row) => {
       const p = mapProduct(row);
       const [image, datasheet, gallery] = await Promise.all([
-        resolveAssetUrl(supabaseAdmin, p.image),
-        p.datasheetUrl ? resolveAssetUrl(supabaseAdmin, p.datasheetUrl) : Promise.resolve(undefined),
-        Promise.all((p.gallery ?? []).map((g) => resolveAssetUrl(supabaseAdmin, g))),
+        resolveAssetUrl(supabasePublic, p.image),
+        p.datasheetUrl ? resolveAssetUrl(supabasePublic, p.datasheetUrl) : Promise.resolve(undefined),
+        Promise.all((p.gallery ?? []).map((g) => resolveAssetUrl(supabasePublic, g))),
       ]);
       return { ...p, image, datasheetUrl: datasheet, gallery: gallery.filter(Boolean) };
     }),
