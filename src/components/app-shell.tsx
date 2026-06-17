@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, Boxes, Users, Settings, Search, Bell, Truck, FileText, BarChart3 } from "lucide-react";
-import logoAsset from "@/assets/innova-logo.png.asset.json";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
+
+const LOGO_URL = "/assets/innova-logo.png";
 
 const nav = [
   { to: "/app", label: "Tableau de bord", icon: LayoutDashboard },
@@ -22,7 +23,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen bg-background">
       <aside className="hidden lg:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground">
         <div className="flex items-center justify-center px-4 py-5 border-b border-sidebar-border bg-white">
-          <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-14 w-auto object-contain" />
+          <img src={LOGO_URL} alt="Innova Lab Solutions" className="h-14 w-auto object-contain" />
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-1">
@@ -55,7 +56,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex-1 flex flex-col min-w-0">
         <header className="sticky top-0 z-20 flex items-center gap-4 bg-surface/90 backdrop-blur border-b px-4 md:px-8 py-3">
           <div className="lg:hidden flex items-center gap-2">
-            <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-8 w-auto object-contain" />
+            <img src={LOGO_URL} alt="Innova Lab Solutions" className="h-8 w-auto object-contain" />
           </div>
 
           <div className="hidden lg:flex flex-1 max-w-xl relative">

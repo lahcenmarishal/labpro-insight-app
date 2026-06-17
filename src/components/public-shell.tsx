@@ -1,12 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ShoppingCart, Mail, Phone, MapPin, Home, LayoutGrid, PhoneCall } from "lucide-react";
-import logoAsset from "@/assets/innova-logo.png.asset.json";
 import { useQuoteCart } from "@/lib/quote-store";
 import { categories } from "@/data/catalog";
 import { QuoteDrawer, openQuoteDrawer } from "@/components/quote-drawer";
 import { ProductSheet } from "@/components/product-sheet";
 import { PageTransition } from "@/components/page-transition";
 import type { ReactNode } from "react";
+
+const LOGO_URL = "/assets/innova-logo.png";
 
 export function PublicShell({ children }: { children: ReactNode }) {
   const { count } = useQuoteCart();
@@ -24,7 +25,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-2.5 flex items-center gap-4">
           <Link to="/" className="flex items-center shrink-0 active:scale-95 transition-transform">
-            <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-7 w-auto object-contain" />
+            <img src={LOGO_URL} alt="Innova Lab Solutions" className="h-7 w-auto object-contain" />
           </Link>
           <div className="flex-1" />
           <button
@@ -54,7 +55,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
       <footer className="hidden lg:block border-t bg-surface mt-10">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 grid gap-8 lg:grid-cols-4">
           <div>
-            <img src={logoAsset.url} alt="Innova Lab Solutions" className="h-14 w-auto object-contain mb-3" />
+            <img src={LOGO_URL} alt="Innova Lab Solutions" className="h-14 w-auto object-contain mb-3" />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Fournisseur de consommables, réactifs, instruments et équipements pour laboratoires,
               industrie et santé.
