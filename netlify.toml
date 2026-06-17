@@ -4,3 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  SUPABASE_URL = "https://lbvdwrtubhgdlauqhxno.supabase.co"
+  SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kIKVhE0xSxvT1XindmseYg_IAGGQxui"
+  SUPABASE_PROJECT_ID = "lbvdwrtubhgdlauqhxno"
+  VITE_SUPABASE_URL = "https://lbvdwrtubhgdlauqhxno.supabase.co"
+  VITE_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kIKVhE0xSxvT1XindmseYg_IAGGQxui"
+  VITE_SUPABASE_PROJECT_ID = "lbvdwrtubhgdlauqhxno"
