@@ -75,9 +75,13 @@ function mapSupplier(row: Record<string, unknown>): Supplier {
 
 const STORAGE_PREFIX = "storage:";
 
+function cleanEnvValue(value: string | undefined) {
+  return value?.trim().replace(/^['"]|['"]$/g, "");
+}
+
 function createSupabasePublicClient() {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
+  const supabaseUrl = cleanEnvValue(process.env.SUPABASE_URL);
+  const supabaseKey = cleanEnvValue(process.env.SUPABASE_PUBLISHABLE_KEY);
 
   if (!supabaseUrl || !supabaseKey) {
     throw new Error("Configuration backend manquante: SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY");
