@@ -35,13 +35,13 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 const CATEGORY_BG: Record<string, string> = {
-  consommables: "/__l5e/assets-v1/d57c6aec-2358-4d4c-bbe0-6143661c48dc/consommables.jpg",
-  reactifs: "/__l5e/assets-v1/1151c0ec-21a0-4d43-9873-a90cc04385f9/reactifs.jpg",
-  instruments: "/__l5e/assets-v1/ccaae5e6-7867-408d-9da1-a9af174f2b60/instruments.jpg",
-  equipements: "/__l5e/assets-v1/764c86c7-727d-4a4d-abe4-6a228b2f3cc7/equipements.jpg",
-  agro: "/__l5e/assets-v1/14dadcd4-97b0-4626-a2f2-77d3046d98ba/agro.jpg",
-  qualite: "/__l5e/assets-v1/4fc83883-70df-421b-aa7d-e8d96a2a352d/qualite.jpg",
-  sante: "/__l5e/assets-v1/ba5a856d-116d-4130-8911-325d021c8e4c/sante.jpg",
+  consommables: "/assets/consommables.jpg",
+  reactifs: "/assets/reactifs.jpg",
+  instruments: "/assets/instruments.jpg",
+  equipements: "/assets/equipements.jpg",
+  agro: "/assets/agro.jpg",
+  qualite: "/assets/qualite.jpg",
+  sante: "/assets/sante.jpg",
 };
 
 function CategoriesPage() {
