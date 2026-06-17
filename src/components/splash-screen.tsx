@@ -4,10 +4,12 @@ const LOGO_URL = "/assets/innova-logo.png";
 
 /** Splash overlay full-screen affiché au premier chargement (et masqué après hydratation). */
 export function SplashScreen() {
+  const [mounted, setMounted] = useState(false);
   const [hide, setHide] = useState(false);
   const [gone, setGone] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const t1 = setTimeout(() => setHide(true), 550);
     const t2 = setTimeout(() => setGone(true), 1100);
     return () => {
@@ -16,6 +18,9 @@ export function SplashScreen() {
     };
   }, []);
 
+  // Important for Netlify/self-hosted deploys: never render the splash in SSR.
+  // If the client bundle fails to load, an SSR splash would cover the real page forever.
+  if (!mounted) return null;
   if (gone) return null;
 
   return (
