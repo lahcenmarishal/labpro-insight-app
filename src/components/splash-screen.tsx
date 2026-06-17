@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/innova-logo.png.asset.json";
+
+const LOGO_URL = "/assets/innova-logo.png";
 
 /** Splash overlay full-screen affiché au premier chargement (et masqué après hydratation). */
 export function SplashScreen() {
@@ -29,7 +30,7 @@ export function SplashScreen() {
     >
       <div className="flex flex-col items-center gap-4" style={{ animation: "splash-logo-in 500ms ease-out" }}>
         <img
-          src={logoAsset.url}
+          src={LOGO_URL}
           alt="Innova Lab Solutions"
           className="h-20 w-auto md:h-28 object-contain"
         />
